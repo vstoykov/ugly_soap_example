@@ -1,0 +1,43 @@
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soapenv:Body>
+        <ns1:getLocationsResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            xmlns:ns1="http://ivr.gws">
+            <getLocationsReturn href="#id0"/>
+        </ns1:getLocationsResponse>
+        <multiRef id="id0" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns2:IVROutputLocationMap"
+            xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+            xmlns:ns2="http://location.model.ivr.gws">
+            <anyMoreRec href="#id1"/>
+            <errors href="#id2"/>
+            <markers xsi:type="soapenc:Array" xsi:nil="true"/>
+            <sessionID xsi:type="soapenc:string" xsi:nil="true"/>
+        </multiRef>
+        <multiRef id="id2" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" soapenc:arrayType="xsd:anyType[1]" xsi:type="soapenc:Array"
+            xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <multiRef href="#id3"/>
+            <multiRef href="#id4"/>
+        </multiRef>
+        <multiRef id="id1" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="xsd:boolean"
+            xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">false
+        </multiRef>
+        <multiRef id="id3" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns3:MessageError"
+            xmlns:ns3="http://soap.entity.commons.gws"
+            xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <code xsi:type="soapenc:string">Error Code 1</code>
+            <description xsi:type="soapenc:string">Error detailed description 1</description>
+            <reference xsi:type="soapenc:string" xsi:nil="true"/>
+            <severity xsi:type="soapenc:string" xsi:nil="true"/>
+        </multiRef>
+        <multiRef id="id4" soapenc:root="0" soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xsi:type="ns3:MessageError"
+            xmlns:ns3="http://soap.entity.commons.gws"
+            xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+            <code xsi:type="soapenc:string">Error Code 2</code>
+            <description xsi:type="soapenc:string">Error detailed description 2</description>
+            <reference xsi:type="soapenc:string" xsi:nil="true"/>
+            <severity xsi:type="soapenc:string" xsi:nil="true"/>
+        </multiRef>
+    </soapenv:Body>
+</soapenv:Envelope>
