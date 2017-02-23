@@ -3,6 +3,7 @@ Example project for bug in python-zeep
 
 This project is created to show issue in python-zeep about parsing
 RPC encoded SOAP messages
+https://github.com/mvantellingen/python-zeep/issues/326
 
 ## 1. Install requirements
 
