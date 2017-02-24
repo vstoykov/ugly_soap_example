@@ -31,10 +31,13 @@ TEMPLATES = [
         },
     },
 ]
-MIDDLEWARE_CLASSES = ()
+MIDDLEWARE_CLASSES = MIDDLEWARE = ()
 SECRET_KEY = 'so so secret'
 
-SILENCED_SYSTEM_CHECKS = ['1_8.W001']  # Silance warning for using TEMPLATE_*
+SILENCED_SYSTEM_CHECKS = [
+    '1_8.W001',  # Silance warning for using TEMPLATE_*
+    '1_10.W001',  # Silance warning for using MIDDLEWARE_CLASSES
+]
 
 if not settings.configured:
     settings.configure(**locals())
