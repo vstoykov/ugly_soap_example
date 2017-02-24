@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 '''
-Run this with `$ python ./mini_django.py runserver` and go
+Run this with `$ python ./soap_server.py` and go
 to http://localhost:8000/
 '''
 import os
 import sys
+import django
 from django.conf import settings
 
 # SETTINGS
@@ -37,11 +38,15 @@ SILENCED_SYSTEM_CHECKS = ['1_8.W001']  # Silance warning for using TEMPLATE_*
 
 if not settings.configured:
     settings.configure(**locals())
+    if hasattr(django, 'setup'):
+        django.setup()
 
 
-# VIEW
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
+# Imports after Django is configured
+from django.conf.urls import url  # NOQA
+from django.shortcuts import render  # NOQA
+from django.views.decorators.csrf import csrf_exempt  # NOQA
+
 
 @csrf_exempt
 def service(request, name=None, template='response.xml'):
@@ -56,16 +61,14 @@ def service(request, name=None, template='response.xml'):
     return render(request, template, context, content_type='text/xml;charset=utf-8')
 
 
-# URLS
-from django.conf.urls import url
-
 urlpatterns = [
     url(r'^(?P<name>\w+)?$', service),
 ]
+
 
 if __name__ == '__main__':
     # set the ENV
     sys.path += (BASE_DIR,)
     # run the development server
     from django.core import management
-    management.execute_from_command_line()
+    management.call_command('runserver', *sys.argv[1:])
