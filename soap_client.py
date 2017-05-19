@@ -20,7 +20,14 @@ class SudsService(FakeService):
 
 class ZeepService(FakeService):
     def __init__(self, wsdl):
-        self.client = zeep.Client(wsdl)
+        # Required strict=False because response is returned
+        # as if it was from Apache Axis which does not preserve
+        # the order the same as in the xsd
+        try:
+            self.client = zeep.Client(wsdl, strict=False)
+        except TypeError:
+            # Zeep is too old and do not support strict argument
+            self.client = zeep.Client(wsdl)
 
 
 if __name__ == '__main__':
